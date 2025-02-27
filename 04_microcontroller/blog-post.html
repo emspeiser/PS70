@@ -12,6 +12,14 @@
         <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css" rel="stylesheet" />
         <!-- Core theme CSS (includes Bootstrap)-->
         <link href="../css/styles2.css" rel="stylesheet" />
+
+
+<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/arduino-light.min.css">
+<script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.8.0/highlight.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/languages/arduino.min.js"></script>
+<script>hljs.initHighlightingOnLoad();</script> 
+
+
     </head>
     <body class="d-flex flex-column">
         <main class="flex-shrink-0">
@@ -71,14 +79,215 @@
                                     <a class="badge bg-secondary text-decoration-none link-light" href="#!">arduino</a>
                                 </header>
                                 <!-- Preview image figure-->
-                                <figure class="mb-4"><img class="img-fluid rounded" src="code.jpg" alt="..." /></figure>
+                                <figure class="mb-4"><img class="img-fluid rounded" src="circuit.png" alt="..." /></figure>
                                 <!-- Post content-->
                                 <section class="mb-5">
-                                    <p class="fs-5 mb-4"><!--something--></p>
+                                    <p class="fs-5 mb-4">This week's assignment was to program an arduino to do something. I decided to choose compnents for my circuit before coming up with an idea——I grabbed a TFT display, some buttons, an ESP32, and a generous handful of wires. Shortly after, I set off to make a device that translates morse code to english.</p>
                                   
-                                   <h2 class="fw-bolder mb-4 mt-5">challenges and solutions</h2>
-                                    <p class="fs-5 mb-4"><!--something--> </p>
+                                   <h2 class="fw-bolder mb-4 mt-5">the process</h2>
+                                    <p class="fs-5 mb-4">My first step was to make the display turn on and run a grapics test. As someone with very little experience with circuitry and even less with cs, this turned out to be a difficult task. I soon learned that I would need two breadboards, as the dimensions of the ESP32 only allow for use of one row on the breadboard, but I needed access to both sides of pins. I wired everything up according to a tutorial I found online, but the screen did not turn on. With Bobby's help, who told me I mirrored the wiring for the pins on the TFT, I was able to run a graphics test on the display. He also helped me get rid of a row of dead pixels by chnaging the dimensions in the code to match the display.  </p>
+
+                                    <p class="fs-5 mb-4">With a working display, I placed buttons in the breadboard and wired them up so that the display would show when each button is pressed. Then, I made strings of the letters in morse code and the alphabet, as well as a string that encodes if the dot button or dash button was pressed. Jessica was a huge help here, especially in making loops that would cycle through morse code letters until matching with the corresponding Engish letter.  </p>
+
+                                    <p class="fs-5 mb-4">I'm not sure if I want to incorporate morse code in my final project, but if I do, I would need to figure out how to create strings of letters and add an additional button for spaces between words. </p>
+
+
+
+
+<video width="500" autoplay muted>
+  <source src="CIRCUIT.MP4" type="video/mp4">
+ 
+</video>
+
+
+
+
+                                   <h2 class="fw-bolder mb-4 mt-5">my code</h2>
+                                    <pre><code class="language-arduino">
+
+/**************************************************************************
+  This is a library for several Adafruit displays based on ST77* drivers.
+
+  Written by Limor Fried/Ladyada for Adafruit Industries.
+  MIT license, all text above must be included in any redistribution
+ **************************************************************************/
+
+#include &lt;Adafruit_GFX.h&gt;    // Core graphics library
+#include &lt;Adafruit_ST7735.h&gt; // Hardware-specific library for ST7735
+#include &lt;Adafruit_ST7789.h&gt; // Hardware-specific library for ST7789
+#include &lt;SPI.h&gt;
+#include &lt;string&gt;
+
+#define TFT_CS         15
+#define TFT_RST        -1
+#define TFT_DC         4
+
+#define BUTTON_DASH 12
+#define BUTTON_DOT 14
+#define BUTTON_ENTER 26
+
+Adafruit_ST7735 tft = Adafruit_ST7735(TFT_CS, TFT_DC, TFT_RST);
+
+float p = 3.1415926;
+
+int currentString[4] = {-1, -1, -1, -1};
+int currentChar = 0;
+
+void setup(void) {
+  Serial.begin(9600);
+  Serial.print(F(&quot;Hello! ST77xx TFT Test&quot;));
+
+  tft.initR(INITR_144GREENTAB); // Init ST7735R chip, green tab
+
+  Serial.println(F(&quot;Initialized&quot;));
+
+  uint16_t time = millis();
+  tft.fillScreen(ST77XX_BLACK);
+  time = millis() - time;
+
+  Serial.println(time, DEC);
+  delay(500);
+
+  // large block of text
+  tft.fillScreen(ST77XX_BLACK);
+  testdrawtext(&quot;Code uploaded&quot;, ST77XX_WHITE);
+  delay(1000);
+  tft.fillScreen(ST77XX_BLACK);
+
+  Serial.println(&quot;done&quot;);
+  delay(1000);
+
+  pinMode(BUTTON_DASH, INPUT_PULLUP);
+  pinMode(BUTTON_DOT, INPUT_PULLUP);
+  pinMode(BUTTON_ENTER, INPUT_PULLUP);
+}
+
+void loop() {
+
+  if (digitalRead(BUTTON_ENTER) == LOW) {
+    tft.fillScreen(ST77XX_BLACK);
+    testdrawtext(translateCurrentEntry(), ST77XX_WHITE); 
+    delay(2000);
+    tft.fillScreen(ST77XX_BLACK);
+    resetCurrentEntry();
+  }
+
+  if (digitalRead(BUTTON_DASH) == LOW) {
+    currentString[currentChar] = 1;
+    currentChar += 1;
+    testdrawtext(&quot;-&quot;, ST77XX_WHITE);
+    delay(1000);
+    tft.fillScreen(ST77XX_BLACK);
+  }
+  else if (digitalRead(BUTTON_DOT) == LOW) {
+    currentString[currentChar] = 0;
+    currentChar += 1;
+    testdrawtext(&quot;.&quot;, ST77XX_WHITE);
+    delay(1000);
+    tft.fillScreen(ST77XX_BLACK);
+  }
+}
+
+String translateCurrentEntry() {  // Placeholder script, eventually return the character from morse
+  String letters[26] = {&quot;.-&quot;, &quot;-...&quot;, &quot;-.-.&quot;, &quot;-..&quot;, &quot;.&quot;, &quot;..-.&quot;, &quot;--.&quot;, &quot;....&quot;, &quot;..&quot;, &quot;.---&quot;, &quot;-.-&quot;, &quot;.-..&quot;, &quot;--&quot;, &quot;-.&quot;, &quot;---&quot;, &quot;.--.&quot;, &quot;--.-&quot;, &quot;.-.&quot;, &quot;...&quot;, &quot;-&quot;, &quot;..-&quot;, &quot;...-&quot;, &quot;.--&quot;, &quot;-..-&quot;, &quot;-.--&quot;, &quot;--..&quot;};
+  String alphabet[26] = {&quot;a&quot;, &quot;b&quot;, &quot;c&quot;, &quot;d&quot;, &quot;e&quot;, &quot;f&quot;, &quot;g&quot;, &quot;h&quot;, &quot;i&quot;, &quot;j&quot;, &quot;k&quot;, &quot;l&quot;, &quot;m&quot;, &quot;n&quot;, &quot;o&quot;, &quot;p&quot;, &quot;q&quot;, &quot;r&quot;, &quot;s&quot;, &quot;t&quot;, &quot;u&quot;, &quot;v&quot;, &quot;w&quot;, &quot;x&quot;, &quot;y&quot;, &quot;z&quot;};
+  String entry = &quot;&quot;;
+  
+  for (int i = 0; i &lt; 4; i += 1) {
+    if (currentString[i] == 1) {
+      entry = entry += &quot;-&quot;;
+    }
+    else if (currentString[i] == 0) {
+      entry = entry += &quot;.&quot;;
+    }
+  }
+
+  String output = &quot;Translation: &quot;;
+
+  for (int i = 0; i &lt; 26; i += 1) {
+    if (entry.equals(letters[i])) {
+      output = output + alphabet[i];
+    }
+  }
+  return output;
+}
+
+void resetCurrentEntry() {
+  for (int i = 0; i &lt; 4; i += 1) {
+    currentString[i] = -1;
+  }
+  currentChar = 0;
+}
+
+void testdrawtext(String text, uint16_t color) {
+  tft.setCursor(0, 0);
+  tft.setTextColor(color);
+  tft.setTextWrap(true);
+  tft.print(text);
+}
+
+void tftPrintTest() {
+  tft.setTextWrap(false);
+  tft.fillScreen(ST77XX_BLACK);
+  tft.setCursor(0, 30);
+  tft.setTextColor(ST77XX_RED);
+  tft.setTextSize(1);
+  tft.println(&quot;Hello World!&quot;);
+  tft.setTextColor(ST77XX_YELLOW);
+  tft.setTextSize(2);
+  tft.println(&quot;Hello World!&quot;);
+  tft.setTextColor(ST77XX_GREEN);
+  tft.setTextSize(3);
+  tft.println(&quot;Hello World!&quot;);
+  tft.setTextColor(ST77XX_BLUE);
+  tft.setTextSize(4);
+  tft.print(1234.567);
+  delay(1500);
+  tft.setCursor(0, 0);
+  tft.fillScreen(ST77XX_BLACK);
+  tft.setTextColor(ST77XX_WHITE);
+  tft.setTextSize(0);
+  tft.println(&quot;Hello World!&quot;);
+  tft.setTextSize(1);
+  tft.setTextColor(ST77XX_GREEN);
+  tft.print(p, 6);
+  tft.println(&quot; Want pi?&quot;);
+  tft.println(&quot; &quot;);
+  tft.print(8675309, HEX); // print 8,675,309 out in HEX!
+  tft.println(&quot; Print HEX!&quot;);
+  tft.println(&quot; &quot;);
+  tft.setTextColor(ST77XX_WHITE);
+  tft.println(&quot;Sketch has been&quot;);
+  tft.println(&quot;running for: &quot;);
+  tft.setTextColor(ST77XX_MAGENTA);
+  tft.print(millis() / 1000);
+  tft.setTextColor(ST77XX_WHITE);
+  tft.print(&quot; seconds.&quot;);
+}
+
+void testButtons() {
+  if (digitalRead(BUTTON_DASH) == LOW) {
+      tft.fillScreen(ST77XX_BLACK);
+      testdrawtext(&quot;dash pressed&quot;, ST77XX_WHITE);
+      delay(1000);
+      tft.fillScreen(ST77XX_BLACK);
+  }
+  else if (digitalRead(BUTTON_DOT) == LOW) {
+      tft.fillScreen(ST77XX_BLACK);
+      testdrawtext(&quot;dot pressed&quot;, ST77XX_WHITE);
+      delay(1000);
+      tft.fillScreen(ST77XX_BLACK);
+  }
+  else if (digitalRead(BUTTON_ENTER) == LOW) {
+      tft.fillScreen(ST77XX_BLACK);
+      testdrawtext(&quot;enter pressed&quot;, ST77XX_WHITE);
+      delay(1000);
+      tft.fillScreen(ST77XX_BLACK);
+  }
+}
+            </code></pre> 
                             
+                       <figure class="mb-4"><img class="img-fluid rounded" src="sketch.jpg" alt="..." /></figure>
 
 
                                     <h2 class="fw-bolder mb-4 mt-5"><!--something, header--></h2>

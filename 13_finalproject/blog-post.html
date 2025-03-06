@@ -83,12 +83,44 @@
                             
 
 
-                                    <h2 class="fw-bolder mb-4 mt-5">Bill of materials</h2>
-                                    <p class="fs-5 mb-4"><!--type here--></p>
+                                    <h2 class="fw-bolder mb-4 mt-5">bill of materials</h2>
+                                    <p class="fs-5 mb-4">
+                                            <ul> 
+                                        <li> breadboard and wires </li>
+                                        <li> vibration motors </li>
+                                        <li> BNO055 IMU, but prototype with MPU-6050 until ready to scale up </li>
+                                        <li> ESP32 </li>
+                                        <li> bluetooth module </li>
 
-                                    <p class="fs-5 mb-4"><!--type here--></p>
+                                    </ul>
 
-                                    <p class="fs-5 mb-4"><!--type here--></p>
+
+
+                                    </p>
+
+                                     <h2 class="fw-bolder mb-4 mt-5">timeline</h2>
+
+                                
+                                   
+                                    <p class="fs-5 mb-4">
+                                       <ul> 
+
+                                        <li><b>Week 5</b> - Bill of materials, timeline, 3D model of the project </li>
+                                      <li>  <b>Week 6</b> - Re-scale parameters based on dimensions of components and 3D print the box for the device. </li>
+                                      <li>  <b>Week 7</b> - Minimum Viable Product: mount device to ski boot and measure ski angulation. If the angle of the boot is too low, vibrate the medial side of the boot. If the angle is greater than the acceptable range, vibrate the lateral side of the boot. Link intensity of vibration to amount out of range. Try to do this wirelessly. </li>
+                                      <li>  <b>Week 8</b> -  Add tilt sensor to measure how steep the hill is and add to Arduino code. </li>
+                                     <li>   <b>Week 9</b> - Add accelerometer, make sure math in Arduino is correct. Find a way to recognize turns and store data so that it all matches up. Try to ski here to test!  </li>
+                                     <li>   <b>Week 10</b> - Add fore-aft pressure sensors, calibrate vibration sensors w.r.t. tilt sensor readings</li>
+                                       <li> <b>Week 11</b> - Make another for the other boot </li>
+                                        <li><b>Week 12</b> - Compare accelerometer data to instances where each boot’s angulation is the same versus different. </li>
+                                    <li>    <b>Week 13</b> - Complete final project and add extra features if time permits </li></ul>
+</p>
+
+<h2 class="fw-bolder mb-4 mt-5">model of project</h2>
+
+<figure class="mb-4"><img class="img-fluid rounded" src="boot.jpg" alt="..." /></figure>
+
+                                    <p class="fs-5 mb-4">Here is a very rough model of my final project——I've included a very rough model of the boot for context, but I will be using my own ski boot for testing and will not be manufacturing one. The grey box will house components, such as a small breadboard, accelerometer, and microcontroller. It is curved so that it fits snuggly with the curved surface of the boot, and is held in place by a strap which is modeled in blue in the image above. The vibrator motors will also be housed in the 3D printed box, but if I decide to scale up and use two (to denote  too much or too little edge angle), then I will need to make another compartment and use a bluetooth module. Please find the STL file on the week 5 page.</p>
 
                                      <p class="fs-5 mb-4"><!--type here--></p>
 

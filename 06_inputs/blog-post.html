@@ -18,7 +18,7 @@
 <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/arduino-light.min.css">
 <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.8.0/highlight.min.js"></script>
 <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/languages/arduino.min.js"></script>
-<script>hljs.initHighlightingOnLoad();</script> 
+<script>hljs.initHighlightingOnLoad();</script>  
 
     </head>
     <body class="d-flex flex-column">
@@ -92,9 +92,9 @@
 
                                     <h3 class="fw-bolder mb-4 mt-5">code</h3>
 
-                                   <h2 class="fw-bolder mb-4 mt-5">my code</h2>
+                                   
                                     <pre><code class="language-arduino"> 
-// Demo for getting individual unified sensor data from the MPU6050
+
 #include &#x3C;Adafruit_MPU6050.h&#x3E;
 
 
@@ -235,10 +235,51 @@ void loop() {
 
 
 
-                                    <h3 class="fw-bolder mb-4 mt-5">schematics</h3>
+                                    <h3 class="fw-bolder mb-4 mt-5">schematics and code</h3>
                                         <figure class="mb-4"><img class="img-fluid rounded" src="schem.png" alt="..." /></figure>
 
-                                    <p class="fs-5 mb-4"> </p>
+                                         <pre><code class="language-arduino"> 
+
+long result;   //variable for the result of the tx_rx measurement.
+int analog_pin = 35;
+int tx_pin = 26;
+
+void setup() {
+    pinMode(tx_pin, OUTPUT);      //Pin 4 provides the voltage step
+    Serial.begin(9600);
+}
+
+void loop() {
+    result = tx_rx();
+    Serial.println(result);
+}
+
+
+long tx_rx(){         // Function to execute rx_tx algorithm and return a value
+                      // that depends on coupling of two electrodes.
+                      // Value returned is a long integer.
+  int read_high;
+  int read_low;
+  int diff;
+  long int sum;
+  int N_samples = 100;    // Number of samples to take.  Larger number slows it down, but reduces scatter.
+
+  sum = 0;
+
+  for (int i = 0; i < N_samples; i++){
+   digitalWrite(tx_pin,HIGH);              // Step the voltage high on conductor 1.
+   read_high = analogRead(analog_pin);     // Measure response of conductor 2.
+   delayMicroseconds(100);                 // Delay to reach steady state.
+   digitalWrite(tx_pin,LOW);               // Step the voltage to zero on conductor 1.
+   read_low = analogRead(analog_pin);      // Measure response of conductor 2.
+   diff = read_high - read_low;            // desired answer is the difference between high and low.
+   sum += diff;                            // Sums up N_samples of these measurements.
+ }
+  return (sum-72,000)/66.6;
+
+}  
+
+                                         </code></pre>
 
 
                                     <h2 class="fw-bolder mb-4 mt-5">cnc milling design</h2>

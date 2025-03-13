@@ -12,6 +12,14 @@
         <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css" rel="stylesheet" />
         <!-- Core theme CSS (includes Bootstrap)-->
         <link href="../css/styles2.css" rel="stylesheet" />
+
+
+
+<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/arduino-light.min.css">
+<script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.8.0/highlight.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/languages/arduino.min.js"></script>
+<script>hljs.initHighlightingOnLoad();</script> 
+
     </head>
     <body class="d-flex flex-column">
         <main class="flex-shrink-0">
@@ -65,24 +73,192 @@
                                     <!-- Post title-->
                                     <h1 class="fw-bolder mb-1">week 6</h1>
                                     <!-- Post meta content-->
-                                    <div class="text-muted fst-italic mb-2">enter date here</div>
+                                    <div class="text-muted fst-italic mb-2">march 12, 2025</div>
                                     <!-- Post categories-->
                                     <a class="badge bg-secondary text-decoration-none link-light" href="#!">inputs</a>
-                                    <a class="badge bg-secondary text-decoration-none link-light" href="#!">something</a>
+                                    <a class="badge bg-secondary text-decoration-none link-light" href="#!">capacitance</a>
                                 </header>
                                 <!-- Preview image figure-->
                                 <figure class="mb-4"><img class="img-fluid rounded" src="code.jpg" alt="..." /></figure>
                                 <!-- Post content-->
                                 <section class="mb-5">
-                                    <p class="fs-5 mb-4"><!--something--></p>
+                                    <p class="fs-5 mb-4">This week's assignment was to create a circuit that has an input and an output, to make a capacitance-based sensor, and to create a CAD file for CNC milling next week.</p>
                                   
-                                   <h2 class="fw-bolder mb-4 mt-5">challenges and solutions</h2>
-                                    <p class="fs-5 mb-4"><!--something--> </p>
+                                   <h2 class="fw-bolder mb-4 mt-5">tilt sensor circuit</h2>
+                                    <p class="fs-5 mb-4">This circuit is one of the first steps towards my final project: I learned how to use a gyroscopic sensor (MPU 6050) and made it so that a certain range of tilt would cause a green LED to light up. If the readings are out of range, a red LED lights up. It took me a moment to familiarize myself with the arduino library for the MPU, and also to make it so that my code did not have delays.</p>
+
+                                    <video width="500" autoplay muted><source src="light.mov" type="video/mp4"></video>
+
+
+                                    <h3 class="fw-bolder mb-4 mt-5">code</h3>
+
+                                   <h2 class="fw-bolder mb-4 mt-5">my code</h2>
+                                    <pre><code class="language-arduino"> 
+// Demo for getting individual unified sensor data from the MPU6050
+#include &#x3C;Adafruit_MPU6050.h&#x3E;
+
+
+Adafruit_MPU6050 mpu;
+Adafruit_Sensor *mpu_temp, *mpu_accel, *mpu_gyro;
+
+
+unsigned long oldMillis = 0;
+const long interval = 100;
+
+int Green = 25;
+int Red = 32;
+
+
+void setup(void) {
+  Serial.begin(115200);
+  pinMode(Green, OUTPUT);
+  digitalWrite(Green, LOW);
+  pinMode(Red, OUTPUT);
+  digitalWrite(Red, LOW);
+  
+  
+  while (!Serial)
+    delay(10); // will pause Zero, Leonardo, etc until serial console opens
+
+  Serial.println(&#x22;Adafruit MPU6050 test!&#x22;);
+
+
+
+  if (!mpu.begin()) {
+    Serial.println(&#x22;Failed to find MPU6050 chip&#x22;);
+    while (1) {
+      delay(10);
+    }
+  }
+
+  Serial.println(&#x22;MPU6050 Found!&#x22;);
+  mpu_temp = mpu.getTemperatureSensor();
+  mpu_temp-&#x3E;printSensorDetails();
+
+  mpu_accel = mpu.getAccelerometerSensor();
+  mpu_accel-&#x3E;printSensorDetails();
+
+  mpu_gyro = mpu.getGyroSensor();
+  mpu_gyro-&#x3E;printSensorDetails();
+}
+
+
+
+void loop() {
+
+ unsigned long currentMillis = millis();
+
+  if (currentMillis - oldMillis &#x3E;= interval) {
+   oldMillis = currentMillis;
+
+    sensors_event_t a, g, temp;
+    mpu.getEvent(&#x26;a, &#x26;g, &#x26;temp);
+
+   sensors_event_t accel;
+   sensors_event_t gyro;
+ //  sensors_event_t temp;
+   mpu_temp-&#x3E;getEvent(&#x26;temp);
+   mpu_accel-&#x3E;getEvent(&#x26;accel);
+   mpu_gyro-&#x3E;getEvent(&#x26;gyro);
+
+
+   if ((accel.acceleration.x) &#x3E; 5){
+   digitalWrite (Green, HIGH);
+   digitalWrite (Red, LOW);}
+
+    else if ((accel.acceleration.x) &#x3C; -5){
+    digitalWrite (Green, HIGH);
+    digitalWrite (Red, LOW); }
+
+    else {
+    digitalWrite (Red, HIGH);
+    digitalWrite (Green, LOW);
+    }
+
+ Serial.print(&#x22;Acceleration X: &#x22;);
+    Serial.print(a.acceleration.x);
+    Serial.print(&#x22;, Y: &#x22;);
+    Serial.print(a.acceleration.y);
+    Serial.print(&#x22;, Z: &#x22;);
+    Serial.print(a.acceleration.z);
+    Serial.println(&#x22; m/s^2&#x22;);
+
+    Serial.print(&#x22;Rotation X: &#x22;);
+    Serial.print(g.gyro.x);
+    Serial.print(&#x22;, Y: &#x22;);
+    Serial.print(g.gyro.y);
+    Serial.print(&#x22;, Z: &#x22;);
+    Serial.print(g.gyro.z);
+    Serial.println(&#x22; rad/s&#x22;);
+
+   // Serial.print(&#x22;Temperature: &#x22;);
+   // Serial.print(temp.temperature);
+   // Serial.println(&#x22; degC&#x22;);
+
+    Serial.println(&#x22;&#x22;);
+
+ 
+  }
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                                    </code></pre>
+
+
+                                    <p class="fs-5 mb-4"> </p>
+
                             
 
 
-                                    <h2 class="fw-bolder mb-4 mt-5"><!--something, header--></h2>
-                                    <p class="fs-5 mb-4"><!--something--></p>
+                                    <h2 class="fw-bolder mb-4 mt-5">capacitance-based angle sensor</h2>
+
+                                    <figure class="mb-4"><img class="img-fluid rounded" src="copper2.png" alt="..." /></figure>
+
+                                    <p class="fs-5 mb-4">The capacitance sensor itself was not too difficult to make. I cut two circles out from cardboard and put a semi-circle of copper sticker on each one. With some styrofoam and some hot glue, I fixed the distance between the two "plates". With two alligator clips, I connected the copper plates to 5v and pin 26. My analog read pin was connected to pin 35.  </p>
+
+                                    <figure class="mb-4"><img class="img-fluid rounded" src="copper1.png" alt="..." /></figure>
+
+                                     <p class="fs-5 mb-4">It turns out that callibrating the sensors to output the angle at which the upper plate has been turned is incredibly difficult. I got stuck on the calibration step——although I get readings from my sensor that reflect changes in angle (ie, when the plates have the most overlapping area the readings are maximized; when they don't overlap they are minimized), I had a really hard time making it so that they read from 0-180 degrees. With some simple math, I did find that the relationship between the angle of rotation and the capacitance reading is linear, since the overlapping area is a linear relationship to the degree of rotation. The relationship is (pi*r^2)*((pi-theta)/pi) if theta is in radians. However, I did not end up using this formula to calculate the angle since there was so much noise in the readings. Instead, knowing the angle and readings were a linear relationship, I took the subtracted the full and zero overlap readings from each other. I then took that value, subtracted it from the sum (so that the baseline reading is 0) and then divided by a constant so that my max value was 180 degrees. With a lot of trial and error, I was able to get the sensor to work and output how much one copper plate was rotated with respect to the other.</p>
+
+
+
+                                    <h3 class="fw-bolder mb-4 mt-5">schematics</h3>
+                                        <figure class="mb-4"><img class="img-fluid rounded" src="schem.png" alt="..." /></figure>
+
+                                    <p class="fs-5 mb-4"> </p>
+
+
+                                    <h2 class="fw-bolder mb-4 mt-5">cnc milling design</h2>
+                                    <p class="fs-5 mb-4">I originally planned to make a file organizer for my desk—-I was halfway done with the CAD files before I realized I could come up with the same exact product using a laser cutter. In order to fully take advantage of CNC capabilities, I decided to make something that incorporated mountain ranges. I had zero clue what I was going to make, but got started nonetheless. </p>
+
+
+                                    
+
+                                    <p class="fs-5 mb-4">Using <a href="https://touchterrain.geol.iastate.edu/">touch terrain</a>, I scanned my favorite mountain, Treble Cone, and  imported the STL file to Fusion 360</p>
+
+                                    <figure class="mb-4"><img class="img-fluid rounded" src="TC.jpg" alt="..." /></figure>
+
+                                    <p class="fs-5 mb-4">I considered trying to make bookends, but the mountain doesn't naturally taper off in an aesthetically pleasing way. My roommmate suggested I use the valleys to make a chip and dip bowl, and though that would be super cool, it would not be very functional. </p>
+
+                                    <p class="fs-5 mb-4">Ultimately, I couldn't come up with something I was super excited about. I'm tabling the mountain idea for now, and instead pivoted to making a mancala board. It's something that I can't make with a laser cutter, and will be a lot nicer made out of wood compared to plastic. </p>
+
+                                     <a download href='./mancala.stl'>Download my mancala STL file </a> 
+
+
+
 
                                 
 

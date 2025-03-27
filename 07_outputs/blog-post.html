@@ -105,13 +105,11 @@
                                    <pre><code class="language-arduino"> 
 
 
-if ((mpu.getAngleX()) > 30) {
-
-      if ((mpu.getAngleY()) > 5){
+      if ((mpu.getAngleY()) &gt; 5){
         digitalWrite (Motor, HIGH);
     }
 
-        else if ((mpu.getAngleY()) < -5){
+        else if ((mpu.getAngleY()) &lt; -5){
           digitalWrite (Motor, HIGH);
         }
 
@@ -119,15 +117,16 @@ if ((mpu.getAngleX()) > 30) {
           digitalWrite (Motor, LOW);
         }
 
-
-
-  }
-
   </code></pre>
                                     
 
                                     <h2 class="fw-bolder mb-4 mt-5">next steps</h2>
-                                    <p class="fs-5 mb-4">  I found an equation for equillibrium tilt of the ski in a carved turn in THIS textbook. I'd like to center my range of accepted values around this equation rather than setting a general range. Since this equation relies on velocity, I'll have to find a work-around (or create a new equation for testing purposes) so that I can see if my device works without getting on snow. </p>
+                                    <p class="fs-5 mb-4">  I found an equation for equillibrium tilt (phi) of the ski in a carved turn in <a href="ski.pdf">this</a> textbook, where alpha is the slope of the hill and beta is the yaw. R is the turn radius, which I'll set to 7 meters since that's the standard turn radius in slalom</p>
+
+                                    <figure class="mb-4"><img class="img-fluid rounded" src="eq.jpg" alt="..." /></figure>
+
+
+                                   <p class="fs-5 mb-4">  I'd like to center my range of accepted values around this equation rather than setting a general range. Since this equation relies on velocity, I'll have to find a work-around (or create a new equation for testing purposes) so that I can see if my device works without getting on snow. </p>
 
                                     <p class="fs-5 mb-4">Additionally, since skiing consists of connected turns and change of direction, the ski will ultimately be flat in between turns. My goal is to recognize discrete turns so that the device always gives accurate feedback. I'll implement Yaw readings to do this.</p>
 

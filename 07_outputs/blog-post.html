@@ -18,7 +18,7 @@
             <!-- Navigation-->
             <nav class="navbar navbar-expand-lg navbar-dark bg-dark" style="background-color: #008080;">
                 <div class="container px-5">
-                    <a class="navbar-brand" href="index.html">emma speiser</a>
+                    <a class="navbar-brand" href="">emma speiser</a>
                     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
                     <div class="collapse navbar-collapse" id="navbarSupportedContent">
                         <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
@@ -65,20 +65,77 @@
                                     <!-- Post title-->
                                     <h1 class="fw-bolder mb-1">week 7</h1>
                                     <!-- Post meta content-->
-                                    <div class="text-muted fst-italic mb-2">enter date here</div>
+                                    <div class="text-muted fst-italic mb-2">March 27, 2025</div>
                                     <!-- Post categories-->
                                     <a class="badge bg-secondary text-decoration-none link-light" href="#!">outputs</a>
-                                    <a class="badge bg-secondary text-decoration-none link-light" href="#!">something</a>
+                                    <a class="badge bg-secondary text-decoration-none link-light" href="#!">minimum viable project</a>
                                 </header>
                                 <!-- Preview image figure-->
-                                <figure class="mb-4"><img class="img-fluid rounded" src="code.jpg" alt="..." /></figure>
+                                <figure class="mb-4"><img class="img-fluid rounded" src="circuit.jpg" alt="..." /></figure>
                                 <!-- Post content-->
                                 <section class="mb-5">
-                                    <p class="fs-5 mb-4"><!--type here--></p>
+                                    <p class="fs-5 mb-4">My main focus this week was creating a minimum viable project. Last week I made a tilt sensor with an arbitrary hard-coded range of "accepted" values, showcased by a green LED when in range and a red one for readings out of range. However, this week I found that I had incorrectly callibrated the sensor so I set about fixing that first.</p>
                                   
-                                   <h2 class="fw-bolder mb-4 mt-5">challenges and solutions</h2>
-                                    <p class="fs-5 mb-4"><!--type here--> </p>
-                            
+                                   <h2 class="fw-bolder mb-4 mt-5">updating code</h2>
+
+                                    <p class="fs-5 mb-4">When I was fixing my callibration issues, I decided to re-solder the accelerometer with pins which allowed me to orient it perpendicular to the breadboard. I kept the LEDs as my output device in the beginning so that I could easily tell if my code ran properly with my newly configured accelerometer. To familiarize myself with the oscilloscope, I made readings which confirmed my intuiton. </p>
+
+                                    <figure class="mb-4"><img class="img-fluid rounded" src="led.jpg" alt="..." /></figure>
+
+                                    <p class="fs-5 mb-4">As expected, the timescale of the LEDs is determined by how long they're tirggered for. This is because when I digitalWrite my LEDs to be HIGH or LOW, they hold a constant supply of 5V or are grounded. </p>
+
+                                    <figure class="mb-4"><img class="img-fluid rounded" src="h.jpg" alt="..." /></figure>
+
+
+                                    <p class="fs-5 mb-4">Next, I soldered a vibrating motor to wires that had large enough radii to be compatible with a breadboard. I made sure to put heat shrink around the exposed parts, and connected it to the pin I had the green LED wired to. </p>
+
+
+                                    <figure class="mb-4"><img class="img-fluid rounded" src="v.jpg" alt="..." /></figure>
+
+
+                                    <p class="fs-5 mb-4">I got some pretty weird readings from the oscilloscope. While it resembles a square wave, the durations of the minimum and maximum values vary. I cannot accurately determine a timescale because of this—whatever it is, it's fast! It looks like the time scale is between 0.4 and 1 ms.</p>
+
+                                    <figure class="mb-4"><img class="img-fluid rounded" src="motor.jpg" alt="..." /></figure>
+
+                                    <p class="fs-5 mb-4">To make sure that my readings weren't a fluke, I also checked another motor. The reading for this motor looked much more conventional——the time domain had a delta of 1.4ms. So, it seems like the readings from the vibrating motor imply that the signal interacts with the vibrating motor's phase in an unconventional way! </p>
+
+
+                                    <p class="fs-5 mb-4">Another change I made was making the accepted tilt values depend on the slope of the hill. For now, I've just hard-coded in scenarios. Here's one example: </p>
+
+                                   <pre><code class="language-arduino"> 
+
+
+if ((mpu.getAngleX()) > 30) {
+
+      if ((mpu.getAngleY()) > 5){
+        digitalWrite (Motor, HIGH);
+    }
+
+        else if ((mpu.getAngleY()) < -5){
+          digitalWrite (Motor, HIGH);
+        }
+
+        else {
+          digitalWrite (Motor, LOW);
+        }
+
+
+
+  }
+
+  </code></pre>
+                                    
+
+                                    <h2 class="fw-bolder mb-4 mt-5">next steps</h2>
+                                    <p class="fs-5 mb-4">  I found an equation for equillibrium tilt of the ski in a carved turn in THIS textbook. I'd like to center my range of accepted values around this equation rather than setting a general range. Since this equation relies on velocity, I'll have to find a work-around (or create a new equation for testing purposes) so that I can see if my device works without getting on snow. </p>
+
+                                    <p class="fs-5 mb-4">Additionally, since skiing consists of connected turns and change of direction, the ski will ultimately be flat in between turns. My goal is to recognize discrete turns so that the device always gives accurate feedback. I'll implement Yaw readings to do this.</p>
+
+                                    <p class="fs-5 mb-4">While I have configured the vibrating motors, I need to make them user friendly. I haven't yet decided whether or not I want to mount the main device on the back of the ski or the boot, and where I attatch the motors will depend on this. In order to give the least distracting sensory feedback, I'd attach the motors to either the sides of the boot or the shin depending on what is closest to the device.</p>
+
+                                    <p class="fs-5 mb-4">If time permits, I'd like to incorporate two vibrating motors which would indicate too much or too little edge angle. Feedback from the output device on the lateral side, for example, could cue the skier to decrease the tilt of the ski.</p>
+
+
 
 
                                     <h2 class="fw-bolder mb-4 mt-5"><!--HEADERtype here--></h2>

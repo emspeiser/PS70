@@ -65,16 +65,73 @@
                                     <!-- Post title-->
                                     <h1 class="fw-bolder mb-1">final project</h1>
                                     <!-- Post meta content-->
-                                    <div class="text-muted fst-italic mb-2">enter date here</div>
+                                    <div class="text-muted fst-italic mb-2">ongoing</div>
                                     <!-- Post categories-->
-                                    <a class="badge bg-secondary text-decoration-none link-light" href="#!">!!!</a>
-                                    <a class="badge bg-secondary text-decoration-none link-light" href="#!">!!!</a>
+                                    <a class="badge bg-secondary text-decoration-none link-light" href="#!"></a>
+                                    <a class="badge bg-secondary text-decoration-none link-light" href="#!"></a>
                                 </header>
                                 <!-- Preview image figure-->
-                                <figure class="mb-4"><img class="img-fluid rounded" src="code.jpg" alt="..." /></figure>
                                 <!-- Post content-->
                                 <section class="mb-5">
                                     <p class="fs-5 mb-4"><!--type here--></p>
+
+                                    <h2 class="fw-bolder mb-4 mt-5">week 7 update</h2>
+                                    <p class="fs-5 mb-4">My main focus this week was creating a minimum viable project. Last week I made a tilt sensor with an arbitrary hard-coded range of "accepted" values, showcased by a green LED when in range and a red one for readings out of range. However, this week I found that I had incorrectly callibrated the sensor so I set about fixing that first.</p>
+
+                                    <figure class="mb-4"><img class="img-fluid rounded" src="circuit.jpg" alt="..." /></figure>
+
+                                  
+                                   <h3 class="fw-bolder mb-4 mt-5">updating code</h3>
+
+                                    <p class="fs-5 mb-4">When I was fixing my callibration issues, I decided to re-solder the accelerometer with pins which allowed me to orient it perpendicular to the breadboard. I kept the LEDs as my output device in the beginning so that I could easily tell if my code ran properly with my newly configured accelerometer. </p>
+
+                                
+                                    <figure class="mb-4"><img class="img-fluid rounded" src="h.jpg" alt="..." /></figure>
+
+
+                                    <p class="fs-5 mb-4">Next, I soldered a vibrating motor to wires that had large enough radii to be compatible with a breadboard. I made sure to put heat shrink around the exposed parts, and connected it to the pin I had the green LED wired to. </p>
+
+
+                                    <p class="fs-5 mb-4">Another change I made was making the accepted tilt values depend on the slope of the hill. For now, I've just hard-coded in scenarios. Here's one example: </p>
+
+                                   <pre><code class="language-arduino"> 
+
+ if ((mpu.getAngleX()) > 30) {
+
+      if ((mpu.getAngleY()) > 45){
+        digitalWrite (Motor, HIGH);
+        }
+
+        else if ((mpu.getAngleY()) < 30){
+          digitalWrite (Motor, HIGH);
+          }
+
+        else {
+          digitalWrite (Motor, LOW);
+        }
+
+  }
+  </code></pre>
+                                   
+
+                                    <h2 class="fw-bolder mb-4 mt-5">next steps</h2>
+                                    <p class="fs-5 mb-4">  I found an equation for equillibrium tilt (phi) of the ski in a carved turn in <a href="ski.pdf">this</a> textbook, where alpha is the slope of the hill and beta is the yaw. R is the turn radius, which I'll set to 7 meters since that's the standard turn radius in slalom.</p>
+
+                                    <figure class="mb-4"><img class="img-fluid rounded" src="eq.jpg" alt="..." /></figure>
+
+
+                                   <p class="fs-5 mb-4">  I'd like to center my range of accepted values around this equation rather than setting a general range. Since this equation relies on velocity, I'll have to find a work-around (or create a new equation for testing purposes) so that I can see if my device works without getting on snow. </p>
+
+                                    <p class="fs-5 mb-4">Additionally, since skiing consists of connected turns and change of direction, the ski will ultimately be flat in between turns. My goal is to recognize discrete turns so that the device always gives accurate feedback. I'll implement Yaw readings to do this.</p>
+
+                                    <p class="fs-5 mb-4">While I have configured the vibrating motors, I need to make them user friendly. I haven't yet decided whether or not I want to mount the main device on the back of the ski or the boot, and where I attatch the motors will depend on this. In order to give the least distracting sensory feedback, I'd attach the motors to either the sides of the boot or the shin depending on what is closest to the device.</p>
+
+                                    <p class="fs-5 mb-4">If time permits, I'd like to incorporate two vibrating motors which would indicate too much or too little edge angle. Feedback from the output device on the lateral side, for example, could cue the skier to decrease the tilt of the ski.</p>
+
+
+
+
+
                                   
                                    <h2 class="fw-bolder mb-4 mt-5">week 5 update</h2>
                                     <p class="fs-5 mb-4">Since my original project idea would be most naturally executed without the use of electronics, I have pivoted to another idea which fulfills requirements more realistically. My new idea is to create a device which gives live-time feedback to skiing technique. I will implement various sensors to measure knee angulation, speed, the slope of the hill, and potentially also pressure in different areas of the foot. With certain preset parameters, such as skill level and the type of skiing event, I can provide live-time feedback via vibrations to indicate areas where a turn can be improved. I’ll make some calculations to understand the relationship between the speed of a turn with ski edge angle in different cases (ie, steep versus flat slope and large versus small radius turns). 
@@ -88,9 +145,9 @@
                                             <ul> 
                                         <li> breadboard and wires </li>
                                         <li> vibration motors </li>
-                                        <li> BNO055 IMU, but prototype with MPU-6050 until ready to scale up </li>
+                                        <li> MPU-6050</li>
                                         <li> ESP32 </li>
-                                        <li> bluetooth module </li>
+                                        <li> battery pack </li>
 
                                     </ul>
 
@@ -107,14 +164,15 @@
 
                                         <li><b>Week 5</b> - Bill of materials, timeline, 3D model of the project </li>
                                       <li>  <b>Week 6</b> - Re-scale parameters based on dimensions of components and 3D print the box for the device. </li>
-                                      <li>  <b>Week 7</b> - Minimum Viable Product: mount device to ski boot and measure ski angulation. If the angle of the boot is too low, vibrate the medial side of the boot. If the angle is greater than the acceptable range, vibrate the lateral side of the boot. Link intensity of vibration to amount out of range. Try to do this wirelessly. </li>
-                                      <li>  <b>Week 8</b> -  Add tilt sensor to measure how steep the hill is and add to Arduino code. </li>
-                                     <li>   <b>Week 9</b> - Add accelerometer, make sure math in Arduino is correct. Find a way to recognize turns and store data so that it all matches up. Try to ski here to test!  </li>
-                                     <li>   <b>Week 10</b> - Add fore-aft pressure sensors, calibrate vibration sensors w.r.t. tilt sensor readings</li>
-                                       <li> <b>Week 11</b> - Make another for the other boot </li>
-                                        <li><b>Week 12</b> - Compare accelerometer data to instances where each boot’s angulation is the same versus different. </li>
-                                    <li>    <b>Week 13</b> - Complete final project and add extra features if time permits </li></ul>
-</p>
+                                      <li>  <b>Week 7</b> - Minimum Viable Product: mount device to ski boot and measure ski angulation. If the angle of the boot is too low or too high, the motor should vibrate.</li>
+
+                                     <li>  <b>Week 9</b> - Incorporate velocity into formula of accepted values. Add another vibrating motor to differentiate between too little and too much angulation.</li>
+
+                                     <li>   <b>Week 10</b> - Find a way to recognize turns (callibrate yaw readings?)</li>
+                                     <li>   <b>Week 11</b> - Finalize wiring of electrical components and solder. Try to power with battery pack. 3D print a housing unit that fits the final dimensions of my device </li>
+                                       <li> <b>Week 12</b> - Make the device user-friendly (ie, cover exposed wires running from the breadboard to the vibrating motor with fabric, find a way to attach motors to boot) </li>
+                                        <li><b>Week 13</b> - Figure out (and design?) a testing apparatus if time permits or add extra features; finishing touches </li>
+                                    </p>
 
 <h2 class="fw-bolder mb-4 mt-5">model of project</h2>
 

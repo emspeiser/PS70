@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head >
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+        <meta name="description" content="" />
+        <meta name="author" content="" />
+        <title>final project</title>
+        <!-- Favicon-->
+        <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
+        <!-- Bootstrap icons-->
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css" rel="stylesheet" />
+        <!-- Core theme CSS (includes Bootstrap)-->
+        <link href="../css/styles2.css" rel="stylesheet" />
+
+        <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/arduino-light.min.css">
+<script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.8.0/highlight.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/languages/arduino.min.js"></script>
+<script>hljs.initHighlightingOnLoad();</script>  
+
+
+    </head>
+    <body class="d-flex flex-column">
+        <main class="flex-shrink-0">
+            <!-- Navigation-->
+            <nav class="navbar navbar-expand-lg navbar-dark bg-dark" style="background-color: #008080;">
+                <div class="container px-5">
+                    <a class="navbar-brand" href="">emma speiser</a>
+                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
+                    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                        <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+                            <li class="nav-item"><a class="nav-link" href="../index.html">home</a></li>
+                            <li class="nav-item"><a class="nav-link" href="../about.html">about</a></li>
+                            <!--<li class="nav-item"><a class="nav-link" href=".././13_finalproject/blog-post.html">final project</a></li>-->
+                            <li class="nav-item dropdown">
+                                <!-- <a class="nav-link dropdown-toggle" id="navbarDropdownBlog" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Blog</a>
+                               <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdownBlog">
+                                    <li><a class="dropdown-item" href="blog-home.html">Blog Home</a></li>
+                                    <li><a class="dropdown-item" href="blog-post.html">Blog Post</a></li>
+                                </ul>
+                            </li>-->
+                            <li class="nav-item dropdown">
+                            <!--     <a class="nav-link dropdown-toggle" id="navbarDropdownPortfolio" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Portfolio</a>
+                                <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdownPortfolio">
+                                    <li><a class="dropdown-item" href="portfolio-overview.html">Portfolio Overview</a></li>
+                                    <li><a class="dropdown-item" href="portfolio-item.html">Portfolio Item</a></li>
+                                </ul>-->
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </nav> 
+            <!-- Page Content-->
+            <section class="py-5">
+                <div class="container px-5 my-5">
+                    <div class="row gx-5">
+                        <div class="col-lg-3">
+                            <div class="d-flex align-items-center mt-lg-5 mb-4">
+                                <!--<img class="img-fluid rounded-circle" src="https://dummyimage.com/50x50/ced4da/6c757d.jpg" alt="..." />-->
+                              <!--  <div class="feature bg-primary bg-gradient text-white rounded-3 mb-3" style="color: #7851A9;"><i class="bi bi-heart-fill"></i></div> -->
+                                <div class="ms-3">
+                                   <!-- <div class="fw-bold">emma speiser</div>
+                                    <div class="text-muted">News, Business</div> -->
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-9">
+                            <!-- Post content-->
+                            <article>
+                                <!-- Post header-->
+                                <header class="mb-4">
+                                    <!-- Post title-->
+                                    <h1 class="fw-bolder mb-1">final project</h1>
+                                    <!-- Post meta content-->
+                                    <div class="text-muted fst-italic mb-2">ongoing</div>
+                                    <!-- Post categories-->
+                                    <a class="badge bg-secondary text-decoration-none link-light" href="#!"></a>
+                                    <a class="badge bg-secondary text-decoration-none link-light" href="#!"></a>
+                                </header>
+                                <!-- Preview image figure-->
+                                <!-- Post content-->
+                                <section class="mb-5">
+                                    <p class="fs-5 mb-4"><!--type here--></p>
+
+                                    <h2 class="fw-bolder mb-4 mt-5">week 7 update</h2>
+                                    <p class="fs-5 mb-4">My main focus this week was creating a minimum viable project. Last week I made a tilt sensor with an arbitrary hard-coded range of "accepted" values, showcased by a green LED when in range and a red one for readings out of range. However, this week I found that I had incorrectly callibrated the sensor so I set about fixing that first.</p>
+
+                                    <figure class="mb-4"><img class="img-fluid rounded" src="circuit.jpg" alt="..." /></figure>
+
+                                  
+                                   <h3 class="fw-bolder mb-4 mt-5">updating code</h3>
+
+                                    <p class="fs-5 mb-4">When I was fixing my callibration issues, I decided to re-solder the accelerometer with pins which allowed me to orient it perpendicular to the breadboard. I kept the LEDs as my output device in the beginning so that I could easily tell if my code ran properly with my newly configured accelerometer. </p>
+
+                                
+                                    <figure class="mb-4"><img class="img-fluid rounded" src="h.jpg" alt="..." /></figure>
+
+
+                                    <p class="fs-5 mb-4">Next, I soldered a vibrating motor to wires that had large enough radii to be compatible with a breadboard. I made sure to put heat shrink around the exposed parts, and connected it to the pin I had the green LED wired to. </p>
+
+
+                                    <p class="fs-5 mb-4">Another change I made was making the accepted tilt values depend on the slope of the hill. For now, I've just hard-coded in scenarios. Here's one example: </p>
+
+                                   <pre><code class="language-arduino"> 
+
+ if ((mpu.getAngleX()) > 30) {
+
+      if ((mpu.getAngleY()) > 45){
+        digitalWrite (Motor, HIGH);
+        }
+
+        else if ((mpu.getAngleY()) < 30){
+          digitalWrite (Motor, HIGH);
+          }
+
+        else {
+          digitalWrite (Motor, LOW);
+        }
+
+  }
+  </code></pre>
+                                   
+
+                                    <h2 class="fw-bolder mb-4 mt-5">next steps</h2>
+                                    <p class="fs-5 mb-4">  I found an equation for equillibrium tilt (phi) of the ski in a carved turn in <a href="ski.pdf">this</a> textbook, where alpha is the slope of the hill and beta is the yaw. R is the turn radius, which I'll set to 7 meters since that's the standard turn radius in slalom.</p>
+
+                                    <figure class="mb-4"><img class="img-fluid rounded" src="eq.jpg" alt="..." /></figure>
+
+
+                                   <p class="fs-5 mb-4">  I'd like to center my range of accepted values around this equation rather than setting a general range. Since this equation relies on velocity, I'll have to find a work-around (or create a new equation for testing purposes) so that I can see if my device works without getting on snow. </p>
+
+                                    <p class="fs-5 mb-4">Additionally, since skiing consists of connected turns and change of direction, the ski will ultimately be flat in between turns. My goal is to recognize discrete turns so that the device always gives accurate feedback. I'll implement Yaw readings to do this.</p>
+
+                                    <p class="fs-5 mb-4">While I have configured the vibrating motors, I need to make them user friendly. I haven't yet decided whether or not I want to mount the main device on the back of the ski or the boot, and where I attatch the motors will depend on this. In order to give the least distracting sensory feedback, I'd attach the motors to either the sides of the boot or the shin depending on what is closest to the device.</p>
+
+                                    <p class="fs-5 mb-4">If time permits, I'd like to incorporate two vibrating motors which would indicate too much or too little edge angle. Feedback from the output device on the lateral side, for example, could cue the skier to decrease the tilt of the ski.</p>
+
+
+
+
+
+                                  
+                                   <h2 class="fw-bolder mb-4 mt-5">week 5 update</h2>
+                                    <p class="fs-5 mb-4">Since my original project idea would be most naturally executed without the use of electronics, I have pivoted to another idea which fulfills requirements more realistically. My new idea is to create a device which gives live-time feedback to skiing technique. I will implement various sensors to measure knee angulation, speed, the slope of the hill, and potentially also pressure in different areas of the foot. With certain preset parameters, such as skill level and the type of skiing event, I can provide live-time feedback via vibrations to indicate areas where a turn can be improved. I’ll make some calculations to understand the relationship between the speed of a turn with ski edge angle in different cases (ie, steep versus flat slope and large versus small radius turns). 
+
+                                    My inspiration for this project is to determine if an ‘A-frame” (where the inside knee is angulated less than the outside knee in any given turn) is faster or slower than both knees being angulated the same amount. It’s still debated today which one is faster than the other, so this project can double as a device which corrects form, as well as research into racing technique. </p>
+                            
+
+
+                                    <h2 class="fw-bolder mb-4 mt-5">bill of materials</h2>
+                                    <p class="fs-5 mb-4">
+                                            <ul> 
+                                        <li> breadboard and wires </li>
+                                        <li> vibration motors </li>
+                                        <li> MPU-6050</li>
+                                        <li> ESP32 </li>
+                                        <li> battery pack </li>
+
+                                    </ul>
+
+
+
+                                    </p>
+
+                                     <h2 class="fw-bolder mb-4 mt-5">timeline</h2>
+
+                                
+                                   
+                                    <p class="fs-5 mb-4">
+                                       <ul> 
+
+                                        <li><b>Week 5</b> - Bill of materials, timeline, 3D model of the project </li>
+                                      <li>  <b>Week 6</b> - Re-scale parameters based on dimensions of components and 3D print the box for the device. </li>
+                                      <li>  <b>Week 7</b> - Minimum Viable Product: mount device to ski boot and measure ski angulation. If the angle of the boot is too low or too high, the motor should vibrate.</li>
+
+                                     <li>  <b>Week 9</b> - Incorporate velocity into formula of accepted values. Add another vibrating motor to differentiate between too little and too much angulation.</li>
+
+                                     <li>   <b>Week 10</b> - Find a way to recognize turns (callibrate yaw readings?)</li>
+                                     <li>   <b>Week 11</b> - Finalize wiring of electrical components and solder. Try to power with battery pack. 3D print a housing unit that fits the final dimensions of my device </li>
+                                       <li> <b>Week 12</b> - Make the device user-friendly (ie, cover exposed wires running from the breadboard to the vibrating motor with fabric, find a way to attach motors to boot) </li>
+                                        <li><b>Week 13</b> - Figure out (and design?) a testing apparatus if time permits or add extra features; finishing touches </li>
+                                    </p>
+
+<h2 class="fw-bolder mb-4 mt-5">model of project</h2>
+
+<figure class="mb-4"><img class="img-fluid rounded" src="boot.jpg" alt="..." /></figure>
+
+                                    <p class="fs-5 mb-4">Here is a very rough model of my final project——I've included a very rough model of the boot for context, but I will be using my own ski boot for testing and will not be manufacturing one. The grey box will house components, such as a small breadboard, accelerometer, and microcontroller. It is curved so that it fits snuggly with the curved surface of the boot, and is held in place by a strap which is modeled in blue in the image above. The vibrator motors will also be housed in the 3D printed box, but if I decide to scale up and use two (to denote  too much or too little edge angle), then I will need to make another compartment and use a bluetooth module. Please find the STL file on the week 5 page.</p>
+
+                                     <p class="fs-5 mb-4"><!--type here--></p>
+
+
+                                   
+                                </section>
+                            </article>
+                            <!-- Comments section-->
+                        <!--    <section>
+                                <div class="card bg-light">
+                                    <div class="card-body">
+                                        Comment form
+                                        <form class="mb-4"><textarea class="form-control" rows="3" placeholder="Join the discussion and leave a comment!"></textarea></form>
+                                     Comment with nested comments
+                                        <div class="d-flex mb-4">
+                                        Parent comment
+                                            <div class="flex-shrink-0"><img class="rounded-circle" src="https://dummyimage.com/50x50/ced4da/6c757d.jpg" alt="..." /></div>
+                                            <div class="ms-3">
+                                                <div class="fw-bold">Commenter Name</div>
+                                                If you're going to lead a space frontier, it has to be government; it'll never be private enterprise. Because the space frontier is dangerous, and it's expensive, and it has unquantified risks.
+                                        Child comment 1
+                                                <div class="d-flex mt-4">
+                                                    <div class="flex-shrink-0"><img class="rounded-circle" src="https://dummyimage.com/50x50/ced4da/6c757d.jpg" alt="..." /></div>
+                                                    <div class="ms-3">
+                                                        <div class="fw-bold">Commenter Name</div>
+                                                        And under those conditions, you cannot establish a capital-market evaluation of that enterprise. You can't get investors.
+                                                    </div>
+                                                </div>
+                                               Child comment 2
+                                                <div class="d-flex mt-4">
+                                                    <div class="flex-shrink-0"><img class="rounded-circle" src="https://dummyimage.com/50x50/ced4da/6c757d.jpg" alt="..." /></div>
+                                                    <div class="ms-3">
+                                                        <div class="fw-bold">Commenter Name</div>
+                                                        When you put money directly to a problem, it makes a good headline.
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                      Single comment
+                                        <div class="d-flex">
+                                            <div class="flex-shrink-0"><img class="rounded-circle" src="https://dummyimage.com/50x50/ced4da/6c757d.jpg" alt="..." /></div>
+                                            <div class="ms-3">
+                                                <div class="fw-bold">Commenter Name</div>
+                                                When I look at the universe and all the ways the universe wants to kill us, I find it hard to reconcile that with statements of beneficence.
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </section>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </main> 
+         Footer
+        <footer class="bg-dark py-4 mt-auto">
+            <div class="container px-5">
+                <div class="row align-items-center justify-content-between flex-column flex-sm-row">
+                    <div class="col-auto"><div class="small m-0 text-white">Copyright &copy; Your Website 2023</div></div>
+                    <div class="col-auto">
+                        <a class="link-light small" href="#!">Privacy</a>
+                        <span class="text-white mx-1">&middot;</span>
+                        <a class="link-light small" href="#!">Terms</a>
+                        <span class="text-white mx-1">&middot;</span>
+                        <a class="link-light small" href="#!">Contact</a>
+                    </div>
+                </div>
+            </div>
+        </footer>
+        Bootstrap core JS-->
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
+        <!-- Core theme JS-->
+        <script src="js/scripts.js"></script>
+    </body>
+</html>

@@ -77,14 +77,43 @@
                                     <p class="fs-5 mb-4"><!--type here--></p>
 
                                         <h2 class="fw-bolder mb-4 mt-5">the idea</h2>
-                                    <p class="fs-5 mb-4"><!--type here--></p>
+                                    <p class="fs-5 mb-4">In April, I decided to completely pivot from my original idea to build a magnetic propulsion train. I wanted to incorporate concepts that I learned in a course on electromagnetism that I took last fall, and I immeditely thought of maglev trains. I ultimately decided against magnetic levitation due to the limited time I had left to complete the project.</p>
                             
                                   
                                    <h2 class="fw-bolder mb-4 mt-5">the science</h2>
-                                    <p class="fs-5 mb-4">In April, I decided to completely pivot from my original idea to build a magnetic propulsion train. I wanted to incorporate concepts that I learned in a course on electromagnetism that I took last fall, </p>
-                            
+                                    <p class="fs-5 mb-4">Magnetic levitation trains work by utelizing magnetic fields and do not rely on motors to operate. My design includes a track with embedded magnets, and a train with 2 solenoids.</p>
+                                    <figure class="mb-4"><img class="img-fluid rounded" src="code.jpg" alt="..." /></figure>
+
 
                                    <h2 class="fw-bolder mb-4 mt-5">hardware</h2>
+
+                                <p class="fs-5 mb-4">The very first thing I did was design my train and track. I wanted to make sure that my train would stay on the track regardless of the influence of the magnetic field, so I used ball bearings instead of wheels. The legs of my first train iteration were too short, but my second print fit pretty well! </p>
+                                
+                                <figure class="mb-4"><img class="img-fluid rounded" src="track.jpeg" alt="..." /></figure>
+                                <figure class="mb-4"><img class="img-fluid rounded" src="withtrain.jpeg" alt="..." /></figure>
+
+
+                                <p class="fs-5 mb-4">Since I can't see if current is running through the solenoids, I wanted to make sure that I could sucessfully run the most simple case of my design. In the place of solenoids, I wired up 2 DC motors to a motor driver, connected them with an external 12 bolt power supply, and also configured a hall sensor. I'm glad I did—I fried two L9110 motor drivers running this simple circuit before checking the data sheet: </p>
+                                <figure class="mb-4"><img class="img-fluid rounded" src="data.jpg" alt="..." /></figure>
+
+                                <p class="fs-5 mb-4">L9110s are unable to handle more than 1 Amp of continuous current, and my circuit was running at almost 2 Amps. I upgraded to an L298N, which was suitable for my use, and it worked!</p>
+
+                                 VIDEO HERE1!!!!
+
+                                <p class="fs-5 mb-4">I moved on to configuring my parts to attach to the train. I soldered the hall sensor and solenoids to wires:</p>
+
+                                <figure class="mb-4"><img class="img-fluid rounded" src="solder.jpeg" alt="..." /></figure>
+
+                                <figure class="mb-4"><img class="img-fluid rounded" src="hall.jpeg" alt="..." /></figure>
+
+                                <p class="fs-5 mb-4">With this design, the hall sensor just <em>barely</em> cleared the track </p>
+
+                                <figure class="mb-4"><img class="img-fluid rounded" src="clear.jpeg" alt="..." /></figure>
+
+
+
+
+
 
                                     <h2 class="fw-bolder mb-4 mt-5">software</h2>
 

@@ -1,421 +1,147 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="utf-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
-        <meta name="description" content="" />
-        <meta name="author" content="" />
-        <title>emma speiser - PS70</title>
-        <!-- Favicon-->
-        <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
-        <!-- Bootstrap icons-->
-        <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css" rel="stylesheet" />
-        <!-- Core theme CSS (includes Bootstrap)-->
-        <link href="css/styles.css" rel="stylesheet" />
-    </head>
-    <body>
-        <!-- Responsive navbar-->
-        <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-            <div class="container px-5">
-               <!-- <a class="navbar-brand" href="#!">spring 2025</a>-->
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
-                <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                    <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
-                       <!-- <li class="nav-item"><a class="nav-link active" aria-current="page" href="#!">home</a></li>
-                        <li class="nav-item"><a class="nav-link" href="about.html">about</a></li>
-                        <li class="nav-item"><a class="nav-link" href="./13_finalproject/blog-post.html">final project</a></li>-->
-                        
-                    </ul>
-                </div>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta
+      name="description"
+      content="Engineering and maker portfolio for Emma Speiser, featuring fabrication, electronics, physics, and design projects."
+    />
+    <meta name="author" content="Emma Speiser" />
+    <title>Emma Speiser | Engineering Portfolio</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet" />
+    <link href="css/styles.css" rel="stylesheet" />
+    <link href="css/portfolio.css" rel="stylesheet" />
+  </head>
+  <body>
+    <nav class="site-nav" aria-label="Main navigation">
+      <a class="brand" href="index.html">Emma Speiser</a>
+      <div class="nav-links">
+        <a href="#projects">Projects</a>
+        <a href="coursework.html">Coursework</a>
+        <a href="about.html">About</a>
+      </div>
+    </nav>
+
+    <main>
+      <header class="hero-section airy-hero">
+        <div class="hero-copy">
+          <p class="eyebrow">Physics, fabrication, electronics, and design</p>
+          <h1>Emma Speiser</h1>
+          <p class="hero-text">
+            I build physical systems at the intersection of physics, fabrication, electronics, and design. This
+            portfolio collects the projects I am making now, with room for research and internship work as it grows.
+          </p>
+          <div class="hero-actions" aria-label="Portfolio actions">
+            <a class="button primary" href="#projects">
+              <i class="bi bi-grid-3x3-gap" aria-hidden="true"></i>
+              View projects
+            </a>
+            <a class="button secondary" href="about.html">
+              <i class="bi bi-person" aria-hidden="true"></i>
+              About Me
+            </a>
+          </div>
+        </div>
+        <figure class="hero-image">
+          <img src="aboutphoto.JPG" alt="Emma Speiser" />
+        </figure>
+      </header>
+
+      <section class="section spacious-section" id="projects">
+        <div class="section-heading">
+          <p class="section-kicker">Selected work</p>
+          <h2>Projects</h2>
+          <p>
+            ---
+          </p>
+        </div>
+
+        <div class="project-grid">
+          <article class="project-card featured">
+            <img src="13_finalproject/withtrain.jpeg" alt="Prototype magnetic propulsion train on a track" />
+            <div class="project-content">
+              <p class="project-meta">Digital fabrication | Electronics | Physics</p>
+              <h3>Magnetic Propulsion Train</h3>
+              <p>
+                A PS70 final project exploring magnetic propulsion with embedded track magnets, solenoids, hall
+                sensing, motor drivers, and iterative 3D-printed train geometries.
+              </p>
+              <a class="text-link" href="13_finalproject/blog-post.html">Read project notes <i class="bi bi-arrow-right" aria-hidden="true"></i></a>
             </div>
-        </nav>
-        <!-- Header-->
-        <header class="bg-dark py-5">
-            <div class="container px-5">
-                <div class="row gx-5 justify-content-center">
-                    <div class="col-lg-6">
-                        <div class="text-center my-5">
-                            <h1 class="display-5 fw-bolder text-white mb-2">emma speiser</h1>
-                            <p class="lead text-white-50 mb-4">spring 2025</p>
-                            <div class="d-grid gap-3 d-sm-flex justify-content-sm-center">
-                                <a class="btn btn-primary btn-lg px-4 me-sm-3" href="about.html">about me</a>
-                                <a class="btn btn-outline-light btn-lg px-4" href="./13_finalproject/blog-post.html">final project</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+          </article>
+
+          <article class="project-card">
+            <img src="08_cnc/final.jpeg" alt="CNC machined and cast fabrication result" />
+            <div class="project-content">
+              <p class="project-meta">CNC | Molding | Casting</p>
+              <h3>Fabrication </h3>
+              <p>
+                A collection of builds across 2D design, 3D printing, CNC, molding, casting, and
+                physical prototyping.
+              </p>
+              <a class="text-link" href="coursework.html">Browse coursework <i class="bi bi-arrow-right" aria-hidden="true"></i></a>
             </div>
-        </header>
-        <!-- Features section-->
-        <section class="py-5 border-bottom
-        " id="features">
-            <div class="container px-5 my-5">
-                <div class="row gx-5">
-                    <div class="col-lg-4 mb-5 mb-lg-0">
-                        <div class="feature bg-primary bg-gradient text-white rounded-3 mb-3"><i class="bi bi-code-slash"></i></div>
-                        <h2 class="h4 fw-bolder">week 1</h2>
-                        <p>html and github</p>
-                        <a class="text-decoration-none" href="./01_intro/blog-post.html">
-                            see my work 
-                            <i class="bi bi-arrow-right"></i>
-                        </a>
-                    </div>
-                    <div class="col-lg-4 mb-5 mb-lg-0">
-                        <div class="feature bg-primary bg-gradient text-white rounded-3 mb-3"><i class="bi bi-inboxes"></i></div>
-                        <h2 class="h4 fw-bolder">week 2</h2>
-                        <p>2D design</p>
-                        <a class="text-decoration-none" href="./02_2Ddesign/blog-post.html">
-                            see my work
-                            <i class="bi bi-arrow-right"></i>
-                        </a>
-                    </div>
-                    <div class="col-lg-4">
-                        <div class="feature bg-primary bg-gradient text-white rounded-3 mb-3"><i class="bi bi-tools"></i></div>
-                        <h2 class="h4 fw-bolder">week 3</h2>
-                        <p>fabrication</p>
-                        <a class="text-decoration-none" href="./03_fabrication/blog-post.html">
-                            see my work
-                            <i class="bi bi-arrow-right"></i>
-                        </a>
-                    </div>
-                </div>
+          </article>
+
+          <article class="project-card placeholder-card quiet-card">
+            <div class="placeholder-mark" aria-hidden="true"><i class="bi bi-journal-text"></i></div>
+            <div class="project-content">
+              <p class="project-meta">Research | Coming soon</p>
+              <h3>Thesis Project</h3>
+              <p>
+                Coming soon!
+              </p>
             </div>
+          </article>
 
-
-
-        </section>
-        <section class="py-5 border-bottom" id="features">
-            <div class="container px-5 my-5">
-                <div class="row gx-5">
-                    <div class="col-lg-4 mb-5 mb-lg-0">
-                        <div class="feature bg-primary bg-gradient text-white rounded-3 mb-3"><i class="bi bi-cpu"></i></div>
-                        <h2 class="h4 fw-bolder">Week 4</h2>
-                        <p>microcontrollers</p>
-                        <a class="text-decoration-none" href="./04_microcontroller/blog-post.html">
-                            see my work 
-                            <i class="bi bi-arrow-right"></i>
-                        </a>
-                    </div>
-                    <div class="col-lg-4 mb-5 mb-lg-0">
-                        <div class="feature bg-primary bg-gradient text-white rounded-3 mb-3"><i class="bi bi-mouse2-fill"></i></div>
-                        <h2 class="h4 fw-bolder">Week 5</h2>
-                        <p>3D design</p>
-                        <a class="text-decoration-none" href="./05_3Ddesign/blog-post.html">
-                            see my work
-                            <i class="bi bi-arrow-right"></i>
-                        </a>
-                    </div>
-                    <div class="col-lg-4">
-                        <div class="feature bg-primary bg-gradient text-white rounded-3 mb-3"><i class="bi bi-box-arrow-in-right"></i></div>
-                        <h2 class="h4 fw-bolder">Week 6</h2>
-                        <p>inputs</p>
-                        <a class="text-decoration-none" href="./06_inputs/blog-post.html">
-                            see my work
-                            <i class="bi bi-arrow-right"></i>
-                        </a>
-                    </div>
-                </div>
+          <article class="project-card placeholder-card quiet-card">
+            <div class="placeholder-mark" aria-hidden="true"><i class="bi bi-building-gear"></i></div>
+            <div class="project-content">
+              <p class="project-meta">Internship | Summer 2025</p>
+              <h3>Seurat Technologies</h3>
+              <p>
+                ---
+              </p>
             </div>
+          </article>
 
-            </section>
-        <!-- Pricing section
-        <section class="bg-light py-5 border-bottom">
-            <div class="container px-5 my-5">
-                <div class="text-center mb-5">
-                    <h2 class="fw-bolder">yay!</h2>
-                    <p class="lead mb-0">:)</p>
-                </div>
-                <div class="row gx-5 justify-content-center">
-                     Pricing card free
-                    <div class="col-lg-6 col-xl-4">
-                        <div class="card mb-5 mb-xl-0">
-                            <div class="card-body p-5">
-                                <div class="small text-uppercase fw-bold text-muted">Week</div>
-                                <div class="mb-3">
-                                    <span class="display-4 fw-bold">4</span>
-                                   <span class="text-muted">/ mo.</span> 
-                                </div>
-
-                                <p>HTML</p>
-
-                                <ul class="list-unstyled mb-4">
-                                    <li class="mb-2">
-                                        <i class="bi bi-check text-primary"></i>
-                                        <strong>1 users</strong>
-                                    </li>
-                                    <li class="mb-2">
-                                        <i class="bi bi-check text-primary"></i>
-                                        5GB storage
-                                    </li>
-                                    <li class="mb-2">
-                                        <i class="bi bi-check text-primary"></i>
-                                        Unlimited public projects
-                                    </li>
-                                    <li class="mb-2">
-                                        <i class="bi bi-check text-primary"></i>
-                                        Community access
-                                    </li>
-                                    <li class="mb-2 text-muted">
-                                        <i class="bi bi-x"></i>
-                                        Unlimited private projects
-                                    </li>
-                                    <li class="mb-2 text-muted">
-                                        <i class="bi bi-x"></i>
-                                        Dedicated support
-                                    </li>
-                                    <li class="mb-2 text-muted">
-                                        <i class="bi bi-x"></i>
-                                        Free linked domain
-                                    </li>
-                                    <li class="text-muted">
-                                        <i class="bi bi-x"></i>
-                                        Monthly status reports
-                                    </li> 
-                                </ul> 
-                                <div class="d-grid"><a class="btn btn-outline-primary" href="#!">see my work</a></div>
-                            </div>
-                        </div>
-                    </div>
-
-                    -->
-                    <!-- Pricing card pro
-                    <div class="col-lg-6 col-xl-4">
-                        <div class="card mb-5 mb-xl-0">
-                            <div class="card-body p-5">
-                                <div class="small text-uppercase fw-bold">
-                                    <i class="bi bi-star-fill text-warning"></i>
-                                    Week
-                                </div>
-                                <div class="mb-3">
-                                    <span class="display-4 fw-bold">5</span>
-                                    <span class="text-muted">/ mo.</span>
-                                </div>
-                                <ul class="list-unstyled mb-4">
-                                    <li class="mb-2">
-                                        <i class="bi bi-check text-primary"></i>
-                                        <strong>5 users</strong>
-                                    </li>
-                                    <li class="mb-2">
-                                        <i class="bi bi-check text-primary"></i>
-                                        5GB storage
-                                    </li>
-                                    <li class="mb-2">
-                                        <i class="bi bi-check text-primary"></i>
-                                        Unlimited public projects
-                                    </li>
-                                    <li class="mb-2">
-                                        <i class="bi bi-check text-primary"></i>
-                                        Community access
-                                    </li>
-                                    <li class="mb-2">
-                                        <i class="bi bi-check text-primary"></i>
-                                        Unlimited private projects
-                                    </li>
-                                    <li class="mb-2">
-                                        <i class="bi bi-check text-primary"></i>
-                                        Dedicated support
-                                    </li>
-                                    <li class="mb-2">
-                                        <i class="bi bi-check text-primary"></i>
-                                        Free linked domain
-                                    </li>
-                                    <li class="text-muted">
-                                        <i class="bi bi-x"></i>
-                                        Monthly status reports
-                                    </li>
-                                </ul>
-                                <div class="d-grid"><a class="btn btn-primary" href="#!">see my work</a></div>
-                            </div>
-                        </div>
-                    </div> -->
-                    <!-- Pricing card enterprise
-                    <div class="col-lg-6 col-xl-4">
-                        <div class="card">
-                            <div class="card-body p-5">
-                                <div class="small text-uppercase fw-bold text-muted">Week</div>
-                                <div class="mb-3">
-                                    <span class="display-4 fw-bold">6</span>
-                                    <span class="text-muted">/ mo.</span>
-                                </div>
-                                <ul class="list-unstyled mb-4">
-                                    <li class="mb-2">
-                                        <i class="bi bi-check text-primary"></i>
-                                        <strong>Unlimited users</strong>
-                                    </li>
-                                    <li class="mb-2">
-                                        <i class="bi bi-check text-primary"></i>
-                                        5GB storage
-                                    </li>
-                                    <li class="mb-2">
-                                        <i class="bi bi-check text-primary"></i>
-                                        Unlimited public projects
-                                    </li>
-                                    <li class="mb-2">
-                                        <i class="bi bi-check text-primary"></i>
-                                        Community access
-                                    </li>
-                                    <li class="mb-2">
-                                        <i class="bi bi-check text-primary"></i>
-                                        Unlimited private projects
-                                    </li>
-                                    <li class="mb-2">
-                                        <i class="bi bi-check text-primary"></i>
-                                        Dedicated support
-                                    </li>
-                                    <li class="mb-2">
-                                        <i class="bi bi-check text-primary"></i>
-                                        <strong>Unlimited</strong>
-                                        linked domains
-                                    </li>
-                                    <li class="text-muted">
-                                        <i class="bi bi-check text-primary"></i>
-                                        Monthly status reports
-                                    </li>
-                                </ul>
-                                <div class="d-grid"><a class="btn btn-outline-primary" href="#!">see my work</a></div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+          <article class="project-card placeholder-card quiet-card">
+            <div class="placeholder-mark" aria-hidden="true"><i class="bi bi-cpu"></i></div>
+            <div class="project-content">
+              <p class="project-meta">Internship | Summer 2026</p>
+              <h3>!!!</h3>
+              <p>
+                ---
+              </p>
             </div>
-        </section> -->
+          </article>
+        </div>
+      </section>
 
+      <section class="section coursework-callout">
+        <div class="callout-copy">
+          <p class="section-kicker">Course archive</p>
+          <h2>PS70 coursework</h2>
+          <p>
+            Weekly documentation from Introduction to Digital Fabrication.
+          </p>
+        </div>
+        <div>
+          <a class="button secondary" href="coursework.html">
+            <i class="bi bi-folder2-open" aria-hidden="true"></i>
+            Open coursework
+          </a>
+        </div>
+      </section>
+    </main>
 
-         <section class="py-5 border-bottom" id="features">
-            <div class="container px-5 my-5">
-                <div class="row gx-5">
-                    <div class="col-lg-4 mb-5 mb-lg-0">
-                        <div class="feature bg-primary bg-gradient text-white rounded-3 mb-3"><i class="bi bi-box-arrow-right"></i></div>
-                        <h2 class="h4 fw-bolder">Week 7</h2>
-                        <p>outputs</p>
-                        <a class="text-decoration-none" href="./07_outputs/blog-post.html">
-                            see my work 
-                            <i class="bi bi-arrow-right"></i>
-                        </a>
-                    </div>
-                    <div class="col-lg-4 mb-5 mb-lg-0">
-                        <div class="feature bg-primary bg-gradient text-white rounded-3 mb-3"><i class="bi bi-pencil-square"></i></div>
-                        <h2 class="h4 fw-bolder">Week 8</h2>
-                        <p>cnc milling</p>
-                        <a class="text-decoration-none" href="./08_cnc/blog-post.html">
-                            see my work
-                            <i class="bi bi-arrow-right"></i>
-                        </a>
-                    </div>
-                    <div class="col-lg-4">
-                        <div class="feature bg-primary bg-gradient text-white rounded-3 mb-3"><i class="bi bi-wifi"></i></div>
-                        <h2 class="h4 fw-bolder">Week 9</h2>
-                        <p>networking</p>
-                        <a class="text-decoration-none" href="./09_networking/blog-post.html">
-                            see my work
-                            <i class="bi bi-arrow-right"></i>
-                        </a>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-
-                 <section class="py-5 border-bottom" id="features">
-            <div class="container px-5 my-5">
-                <div class="row gx-5">
-                    <div class="col-lg-4 mb-5 mb-lg-0">
-                        <div class="feature bg-primary bg-gradient text-white rounded-3 mb-3"><i class="bi bi-laptop"></i></div>
-                        <h2 class="h4 fw-bolder">Week 10</h2>
-                        <p>machine</p>
-                        <a class="text-decoration-none" href="./10_machine/blog-post.html">
-                            see my work 
-                            <i class="bi bi-arrow-right"></i>
-                        </a>
-                    </div>
-                   
-            </div>
-        </section>
-
-
-
-        <!-- Contact section
-        <section class="bg-light py-5">
-            <div class="container px-5 my-5 px-5">
-                <div class="text-center mb-5">
-                    <div class="feature bg-primary bg-gradient text-white rounded-3 mb-3"><i class="bi bi-envelope"></i></div>
-                    <h2 class="fw-bolder">Get in touch</h2>
-                    <p class="lead mb-0">We'd love to hear from you</p>
-                </div>
-                <div class="row gx-5 justify-content-center">
-                    <div class="col-lg-6"> -->
-                        <!-- * * * * * * * * * * * * * * *-->
-                        <!-- * * SB Forms Contact Form * *-->
-                        <!-- * * * * * * * * * * * * * * *-->
-                        <!-- This form is pre-integrated with SB Forms.-->
-                        <!-- To make this form functional, sign up at-->
-                        <!-- https://startbootstrap.com/solution/contact-forms-->
-                        <!-- to get an API token!-->
-
-                    <!--
-                        <form id="contactForm" data-sb-form-api-token="API_TOKEN">
-                           Name input
-                            <div class="form-floating mb-3">
-                                <input class="form-control" id="name" type="text" placeholder="Enter your name..." data-sb-validations="required" />
-                                <label for="name">Full name</label>
-                                <div class="invalid-feedback" data-sb-feedback="name:required">A name is required.</div>
-                            </div>
-                        Email address input
-                            <div class="form-floating mb-3">
-                                <input class="form-control" id="email" type="email" placeholder="name@example.com" data-sb-validations="required,email" />
-                                <label for="email">Email address</label>
-                                <div class="invalid-feedback" data-sb-feedback="email:required">An email is required.</div>
-                                <div class="invalid-feedback" data-sb-feedback="email:email">Email is not valid.</div>
-                            </div>
-                         
-
-                         Phone number input
-                            <div class="form-floating mb-3">
-                                <input class="form-control" id="phone" type="tel" placeholder="(123) 456-7890" data-sb-validations="required" />
-                                <label for="phone">Phone number</label>
-                                <div class="invalid-feedback" data-sb-feedback="phone:required">A phone number is required.</div>
-                            </div>
-                           Message input
-                            <div class="form-floating mb-3">
-                                <textarea class="form-control" id="message" type="text" placeholder="Enter your message here..." style="height: 10rem" data-sb-validations="required"></textarea>
-                                <label for="message">Message</label>
-                                <div class="invalid-feedback" data-sb-feedback="message:required">A message is required.</div>
-                            </div>
-                         Submit success message
-              
-                           This is what your users will see when the form
-                             has successfully submitted
-                            <div class="d-none" id="submitSuccessMessage">
-                                <div class="text-center mb-3">
-                                    <div class="fw-bolder">Form submission successful!</div>
-                                    To activate this form, sign up at
-                                    <br />
-                                    <a href="https://startbootstrap.com/solution/contact-forms">https://startbootstrap.com/solution/contact-forms</a>
-                                </div>
-                            </div>
-                            Submit error message
-                        
-                          This is what your users will see when there is  an error submitting the form 
-                            <div class="d-none" id="submitErrorMessage"><div class="text-center text-danger mb-3">Error sending message!</div></div> -->
-                            <!-- Submit Button-->
-                          <!--  <div class="d-grid"><button class="btn btn-primary btn-lg disabled" id="submitButton" type="submit">Submit</button></div>
-                        </form>
-                    </div>
-                </div>
-            </div>
-        </section> -->
-        <!-- Footer
-        <footer class="py-5 bg-dark">
-            <div class="container px-5"><p class="m-0 text-center text-white">Copyright &copy; Your Website 2023</p></div>
-        </footer>-->
-        <!-- Bootstrap core JS-->
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
-        <!-- Core theme JS-->
-        <script src="js/scripts.js"></script>
-        <!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *-->
-        <!-- * *                               SB Forms JS                               * *-->
-        <!-- * * Activate your form at https://startbootstrap.com/solution/contact-forms * *-->
-        <!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *-->
-        <script src="https://cdn.startbootstrap.com/sb-forms-latest.js"></script>
-    </body>
+    <footer class="site-footer">
+      <p>Emma Speiser</p>
+      <div>
+        <a href="coursework.html">Coursework</a>
+        <a href="about.html">About</a>
+      </div>
+    </footer>
+  </body>
 </html>
